@@ -55,7 +55,7 @@ class Piece {
         int get_rotation() {
             return rotation;
         }
-}
+};
 
 class Game {
 
@@ -74,7 +74,7 @@ class Game {
         void break_lines() {
             int lines = 0;
             int holes;
-            for (int i=0; i<board_height; i++) {
+  for (int i=0; i<board_height; i++) {
                 holes = 0;
                 for (int j=0; j<board_width; j++) {
                     if (field[i][j] == -1)
