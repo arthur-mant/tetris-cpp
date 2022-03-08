@@ -60,7 +60,7 @@ class Piece {
 class Game {
 
     private:
-        int score, lines, pieces, board_height, board_width;
+        int score, lines, pieces, board_height, board_width, level;
         Piece piece, next_piece;
         bool gameover;
         double fps;
@@ -128,6 +128,7 @@ class Game {
             fps = -1;
             piece = Piece((board_width/2)-2, -2);
             next_piece = Piece((board_width/2)-2, -2);
+            level = 1;
         }
         void hard_drop() {
             while (!intersects())
@@ -152,4 +153,58 @@ class Game {
             if (intersects())
                 piece.rotate(-1);
         }
+}
+
+class GameRun {
+
+    bool done, pressing_down;
+    Game game;
+    int counter, fps;
+    Controller controller;
+    Screen screen;
+
+    GameRun(Game new_game) {
+
+        done = false;
+        game = new_game;
+        counter = 0;
+        fps = 1;
+        pressing_down = false;
+
+    }
+
+    bool run_frame() {
+
+        counter++;
+        if (counter > 10000)
+            counter = 0;
+        if (!game.gameover && (counter % (fps/2*game.level) == 0))
+            game.go_down();
+
+        switch(controller.get_command()) {
+            case 'U':
+                game.rotate();
+                break;
+            case 'D':
+                game.go_down();
+                break;
+            case 'L':
+                game.go_side(-1);
+                break;
+            case 'R':
+                game.go_side(1);
+                break;
+            case 'H':
+                game.hard_drop();
+                break;
+        }
+
+        screen.update_screen();
+
+        if (done) {
+            return false;
+        }
+        return true;
+    }
+
 }
