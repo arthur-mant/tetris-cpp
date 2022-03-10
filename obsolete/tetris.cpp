@@ -41,11 +41,6 @@ class Piece {
             y += n;
             return y;
         }
-/*
-        std::tuple<int, int, int> get_coordinates() {
-            return std::make_tuple(x, y, rotation);
-        }
-*/
         int get_x() {
             return x;
         }

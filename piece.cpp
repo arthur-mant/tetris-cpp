@@ -12,36 +12,38 @@ int ***pieces_def = {
 }
 
 
-Piece(int orig_x, int orig_y) {
+Piece::Piece(int orig_x, int orig_y) {
     x = orig_x;
     y = orig_y;
     type = rand() % 7;
     rotation = 0;
     rot_array = pieces_def[type];
 }
-int *image() {
+int *Piece::image() {
     return rot_array[rotation];
 }
-void rotate(direction) {
+void Piece::rotate(direction) {
     rotation = (rotation+direction) % (sizeof(rot_array)/sizeof(rot_array[0]));
 }
-int move_x(int n) {
+int Piece::move_x(int n) {
     if ((n != 1) && (n != -1))
         printf("ERROR: ILLEGAL X AXIS PIECE MOVE\n");
         return NULL;
     x += n;
     return x;
 }
-int move_down(int n) {
+int Piece::move_down(int n) {
     y += n;
     return y;
 }
 
-std::tuple<int, int, int> get_coordinates() {
-    return std::make_tuple(x, y, rotation);
-}
-
-int get_x() {
+int Piece::get_x() {
     return x;
 }
-int get_y() {
+
+int Piece::get_y() {
+    return y;
+}
+int Piece::get_rotation() {
+    return rotation;
+}

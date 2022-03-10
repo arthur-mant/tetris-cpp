@@ -1,3 +1,5 @@
+#ifndef _PIECE
+#define _PIECE
 
 class Piece {
 
@@ -15,3 +17,5 @@ class Piece {
         int get_y();
         int get_rotation();
 };
+
+#endif
