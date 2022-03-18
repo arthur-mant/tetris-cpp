@@ -1,3 +1,6 @@
+#include "defs.h"
+#include "piece.h"
+
 #ifndef _GAME
 #define _GAME
 

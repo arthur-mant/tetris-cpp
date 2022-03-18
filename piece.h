@@ -11,14 +11,16 @@ class Piece {
         std::array<std::array<int, 4>, 4> rot_array;
 
     public:
+        Piece();
         Piece(int orig_x, int orig_y);
         std::array<int, 4> image();
-        void rotate();
+        void rotate(int i);
         int move_x(int n);
         int move_down(int n);
         int get_x();
         int get_y();
         int get_rotation();
+        int get_type();
 };
 
 #endif

@@ -23,8 +23,8 @@ Piece::Piece(int orig_x, int orig_y) {
 std::array<int, 4> Piece::image() {
     return rot_array[rotation];
 }
-void Piece::rotate() {
-    rotation = (rotation+1) % (rot_num);
+void Piece::rotate(int i) {
+    rotation = (rotation+i) % (rot_num);
 }
 int Piece::move_x(int n) {
     if ((n != 1) && (n != -1))
@@ -47,4 +47,7 @@ int Piece::get_y() {
 }
 int Piece::get_rotation() {
     return rotation;
+}
+int Piece::get_type() {
+    return type;
 }

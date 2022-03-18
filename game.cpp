@@ -38,13 +38,14 @@ bool Game::intersects() {
              (field[i+piece.get_y()][j+piece.get_x()])))
                 intersection = true;
     return intersection;
+    }
 }
 bool Game::freeze() {
     int i, j;
     for (int block: piece.image()) {
         i = block/4;
         j = block%4;
-        field[i+piece.y][j+piece.x] = piece.type;
+        field[i+piece.get_y()][j+piece.get_x()] = piece.get_type();
     }
     break_lines();
     new_piece();
