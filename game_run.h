@@ -1,16 +1,26 @@
+#include "game.h"
+#include "keyboard_input.h"
+#include "tela.h"
+#include "defs.h"
+
 #ifndef _GAME_RUN
 #define _GAME_RUN
 
 class GameRun {
 
-    bool done, pressing_down;
-    Game game;
-    int counter, fps;
-    Controller controller;
-    Screen screen;
+    private:
+        bool done, pressing_down, uses_keyboard, uses_screen;
+        Game game;
+        int counter, fps;
+        KeyboardInput k_inp;
+        //QueueInput q_inp;
+        Tela tela;
 
-    GameRun(Game new_game);
-    bool run_frame();
+        int exec_command(char c);
 
-}
+    public:
+        GameRun(Game new_game, bool, bool);    
+        bool run_frame();
+
+};
 #endif

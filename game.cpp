@@ -88,3 +88,10 @@ void Game::rotate() {
     if (intersects())
         piece.rotate(-1);
 }
+
+bool Game::get_gameover() {
+    return gameover;
+}
+int Game::get_level() {
+    return level;
+}

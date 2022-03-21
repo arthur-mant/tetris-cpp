@@ -1,26 +1,32 @@
 #include "game_run.h"
 
 
-
-GameRun::GameRun(Game new_game) {
+GameRun::GameRun(Game new_game, bool keyboard, bool screen) {
 
     done = false;
     game = new_game;
     counter = 0;
     fps = 1;
+    uses_keyboard = keyboard;
+    uses_screen = screen;
+
     pressing_down = false;
+
+
+    if (keyboard)
+        k_inp = KeyboardInput();
+//    else
+//        q_inp = Queue_Input();
+
+    if (screen)
+        tela = Tela(game);
+        
 
 }
 
-bool GameRun::run_frame() {
+int GameRun::exec_command(char c) {
 
-    counter++;
-    if (counter > 10000)
-        counter = 0;
-    if (!game.gameover && (counter % (fps/2*game.level) == 0))
-        game.go_down();
-
-    switch(controller.get_command()) {
+    switch(c) {
         case 'U':
             game.rotate();
             break;
@@ -36,9 +42,31 @@ bool GameRun::run_frame() {
         case 'H':
             game.hard_drop();
             break;
+        case '0':
+            break;
+        default:
+            fprintf(stderr, "\nERROR: unrecognized command%c\n", c);
+            
     }
+    return 0;
+}
 
-    screen.update_screen();
+bool GameRun::run_frame() {
+
+    counter++;
+    if (counter > 10000)
+        counter = 0;
+    if (!game.get_gameover() && (counter % (fps/2*game.get_level()) == 0))
+        game.go_down();
+
+    if (uses_keyboard)
+        exec_command(k_inp.get_command());
+/*
+    else
+        exec_command(q_inp.get_command());
+*/
+
+    tela.update();
 
     if (done) {
         return false;

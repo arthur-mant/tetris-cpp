@@ -18,10 +18,14 @@ class Game {
         bool intersects();
         bool freeze();
     public:
+        Game();
         Game(int h, int w, int **new_field);
         void hard_drop();
         void go_down();
         void go_side(int direction);
         void rotate();
+
+        bool get_gameover();
+        int get_level();
 };
 #endif
