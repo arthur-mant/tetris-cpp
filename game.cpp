@@ -35,7 +35,7 @@ bool Game::intersects() {
             ((i+piece.get_y() >= board_height) ||
              (j+piece.get_x() >= board_width) ||
              (j+piece.get_x() < 0) ||
-             (field[i+piece.get_y()][j+piece.get_x()])))
+             (field[i+piece.get_y()][j+piece.get_x()] > -1)))
                 intersection = true;
     return intersection;
     }
@@ -53,16 +53,21 @@ bool Game::freeze() {
         gameover = true;
 }
 
-Game::Game(int h, int w, int **new_field) {
+Game::Game(int h, int w) {
     board_height = h;
     board_width = w;
-    field = new_field;
     score = lines = pieces = 0;
     gameover = false;
     fps = -1;
     piece = Piece((board_width/2)-2, -2);
     next_piece = Piece((board_width/2)-2, -2);
     level = 1;
+
+    int **new_field = (int **)malloc(h*sizeof(int *));
+    for (int i=0; i<h; i++)
+        new_field[i] = (int *)malloc(w*sizeof(int));
+    field = new_field;
+
 }
 
 void Game::hard_drop() {

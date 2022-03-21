@@ -19,7 +19,7 @@ class Game {
         bool freeze();
     public:
         Game();
-        Game(int h, int w, int **new_field);
+        Game(int h, int w);
         void hard_drop();
         void go_down();
         void go_side(int direction);

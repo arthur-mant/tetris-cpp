@@ -19,7 +19,7 @@ class GameRun {
         int exec_command(char c);
 
     public:
-        GameRun(Game new_game, bool, bool);    
+        GameRun(bool, bool);    
         bool run_frame();
 
 };

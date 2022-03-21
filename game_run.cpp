@@ -1,10 +1,11 @@
 #include "game_run.h"
 
 
-GameRun::GameRun(Game new_game, bool keyboard, bool screen) {
+GameRun::GameRun(bool keyboard, bool screen) {
+
+    Game new_game(BOARD_HEIGHT, BOARD_WIDTH);
 
     done = false;
-    game = new_game;
     counter = 0;
     fps = 1;
     uses_keyboard = keyboard;

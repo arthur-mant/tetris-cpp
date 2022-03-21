@@ -25,6 +25,12 @@ Tela::Tela(Game game) {
 
 }
 
+void Tela::update() {
+
+
+
+}
+
 void Tela::cleanup_graphics() {
     SDL_DestroyRenderer(render);
     SDL_DestroyWindow(win);

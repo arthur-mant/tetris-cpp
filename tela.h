@@ -1,4 +1,5 @@
 #include "defs.h"
+#include "game.h"
 
 class Tela {
 
@@ -13,5 +14,6 @@ class Tela {
     public:
         Tela();
         Tela(Game game);
+        void update();
         void cleanup_graphics();
 };
