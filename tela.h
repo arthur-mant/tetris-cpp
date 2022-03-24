@@ -5,7 +5,7 @@ class Tela {
 
     private:
         SDL_Window *win;
-        SDL_Renderer *render;
+        SDL_Renderer *renderer;
         SDL_Texture *display;
         SDL_Surface *surface;
 //        TTF_Font *gFont;
@@ -14,7 +14,7 @@ class Tela {
 
     public:
         Tela();
+        ~Tela();
         Tela(Game game);
         void update();
-        void cleanup_graphics();
 };

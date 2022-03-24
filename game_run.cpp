@@ -89,8 +89,11 @@ bool GameRun::run_frame() {
 
     real_fps = 1.0/((std::chrono::system_clock::now() - start).count());
 
+    return !done;
+/*
     if (done) {
         return false;
     }
     return true;
+*/
 }
