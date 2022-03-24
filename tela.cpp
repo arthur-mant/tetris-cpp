@@ -1,5 +1,6 @@
 #include "tela.h"
 
+Tela::Tela(){}
 
 Tela::Tela(Game game) {
 

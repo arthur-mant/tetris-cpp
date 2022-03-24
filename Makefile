@@ -9,7 +9,7 @@ OBJS=$(SRCS:.cpp=.o)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 tetris_ai: $(OBJS)
-	$(CC) $(CFLAGS) $(LINKER) -o tetris_ai $(OBJS)
+	$(CC) $(CFLAGS) -o tetris_ai $(OBJS) $(LINKER) 
 
 all: tetris_ai
 

@@ -53,6 +53,8 @@ bool Game::freeze() {
         gameover = true;
 }
 
+Game::Game(){}
+
 Game::Game(int h, int w) {
     board_height = h;
     board_width = w;

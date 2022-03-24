@@ -11,6 +11,7 @@ std::array<std::array<std::array<int, 4>, 4>, 7> pieces_def = {{
 }};
 const int num_rot[7] = {2, 4, 4, 4, 1, 2, 2};
 
+Piece::Piece(){}
 
 Piece::Piece(int orig_x, int orig_y) {
     x = orig_x;
