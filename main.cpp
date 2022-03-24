@@ -3,8 +3,8 @@
 
 int main() {
 
-    GameRun game_run(true, true);
+    GameRun game_run(true, true, true, 60);
 
-    while(1);
+    while(game_run.run_frame());
 
 }

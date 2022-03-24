@@ -9,9 +9,9 @@
 class GameRun {
 
     private:
-        bool done, pressing_down, uses_keyboard, uses_screen;
+        bool done, pressing_down, uses_keyboard, uses_screen, limit_fps;
         Game game;
-        int counter, fps;
+        int counter, real_fps, virtual_fps;
         KeyboardInput k_inp;
         //QueueInput q_inp;
         Tela tela;
@@ -19,7 +19,7 @@ class GameRun {
         int exec_command(char c);
 
     public:
-        GameRun(bool, bool);    
+        GameRun(bool, bool, bool, int);    
         bool run_frame();
 
 };

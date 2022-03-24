@@ -6,6 +6,8 @@ char KeyboardInput::get_command() {
 
     SDL_PollEvent(&event);
 
+//    std::cout << "event: " << event.type << " , quit: " << SDL_QUIT << "\n";
+
     if (event.type == SDL_KEYDOWN) {
         switch (event.type) {
             case SDLK_LEFT:
@@ -20,5 +22,8 @@ char KeyboardInput::get_command() {
                 return 'H';
         }
     }
+    
+    if (event.type == SDL_QUIT)
+        return 'E';
     return '0';
 }

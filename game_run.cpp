@@ -1,31 +1,35 @@
 #include "game_run.h"
 
 
-GameRun::GameRun(bool keyboard, bool screen) {
+GameRun::GameRun(bool keyboard, bool screen, bool limit_fps, int fps) {
 
     Game new_game(BOARD_HEIGHT, BOARD_WIDTH);
 
-    done = false;
-    counter = 0;
-    fps = 1;
-    uses_keyboard = keyboard;
-    uses_screen = screen;
+    this->done = false;
+    this->counter = 0;
+    this->virtual_fps = fps;
+    this->real_fps = -1;
+    this->limit_fps = 
+    this->uses_keyboard = keyboard;
+    this->uses_screen = screen;
 
-    pressing_down = false;
+    this->pressing_down = false;
 
 
     if (keyboard)
-        k_inp = KeyboardInput();
+        this->k_inp = KeyboardInput();
 //    else
 //        q_inp = Queue_Input();
 
     if (screen)
-        tela = Tela(game);
+        this->tela = Tela(game);
         
 
 }
 
 int GameRun::exec_command(char c) {
+
+//    std::cout << "comando: " << c << "\n";
 
     switch(c) {
         case 'U':
@@ -43,6 +47,9 @@ int GameRun::exec_command(char c) {
         case 'H':
             game.hard_drop();
             break;
+        case 'E':  //fechar janela
+            done = true;
+            break;
         case '0':
             break;
         default:
@@ -54,10 +61,12 @@ int GameRun::exec_command(char c) {
 
 bool GameRun::run_frame() {
 
+    auto start = std::chrono::system_clock::now();
+
     counter++;
     if (counter > 10000)
         counter = 0;
-    if (!game.get_gameover() && (counter % (fps/2*game.get_level()) == 0))
+    if (!game.get_gameover() && (counter % (virtual_fps/2*game.get_level()) == 0))
         game.go_down();
 
     if (uses_keyboard)
@@ -68,6 +77,17 @@ bool GameRun::run_frame() {
 */
 
     tela.update();
+
+    if (limit_fps) {
+        while((std::chrono::system_clock::now() - start).count() < 1.0/(double)virtual_fps*1000000000)
+            usleep(1000);
+/*
+        std::cout << (std::chrono::system_clock::now() - start).count() << ", " 
+            << 1.0/(double)virtual_fps*1000000000 << "\n";
+*/
+    }
+
+    real_fps = 1.0/((std::chrono::system_clock::now() - start).count());
 
     if (done) {
         return false;
