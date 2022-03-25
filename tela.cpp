@@ -27,13 +27,25 @@ void Tela::update() {
 
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
     
-    SDL_Rect rect;//= {50, 50, BOARD_WIDTH*20, BOARD_HEIGHT*20};  //{x, y, w, h}
-    rect.x = 50;
+    SDL_Rect rect;
+    rect.x = 50+BOARD_WIDTH*20;
     rect.y = 50;
     rect.w = BOARD_WIDTH*20;
     rect.h = BOARD_HEIGHT*20;
 
-    SDL_RenderFillRect(this->renderer, &rect);
+    SDL_RenderDrawRect(this->renderer, &rect);
+
+    rect = {50, 50, 20, 20}; //{x, y, w, h}
+
+    for (int i=0; i<BOARD_HEIGHT; i++) {
+        rect.x = 50;
+        for (int j=0; j<BOARD_WIDTH; j++) {
+            SDL_RenderDrawRect(this->renderer, &rect);
+            rect.x += 20;
+        }
+        rect.y += 20;
+    }
+
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);
 
     SDL_RenderPresent(this->renderer);
