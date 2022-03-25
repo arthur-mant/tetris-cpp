@@ -65,10 +65,12 @@ Game::Game(int h, int w) {
     next_piece = Piece((board_width/2)-2, -2);
     level = 1;
 
-    int **new_field = (int **)malloc(h*sizeof(int *));
-    for (int i=0; i<h; i++)
-        new_field[i] = (int *)malloc(w*sizeof(int));
-    field = new_field;
+    this->field = (int **)malloc(h*sizeof(int *));
+    for (int i=0; i<h; i++) {
+        this->field[i] = (int *)malloc(w*sizeof(int));
+        for (int j=0; j<w; j++)
+            this->field[i][j] = -1;
+    }
 
 }
 
@@ -94,6 +96,9 @@ void Game::rotate() {
     piece.rotate(1);
     if (intersects())
         piece.rotate(-1);
+}
+int **Game::get_field() {
+    return this->field;
 }
 
 bool Game::get_gameover() {

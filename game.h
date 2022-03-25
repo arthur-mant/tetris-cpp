@@ -24,6 +24,7 @@ class Game {
         void go_down();
         void go_side(int direction);
         void rotate();
+        int **get_field();
 
         bool get_gameover();
         int get_level();

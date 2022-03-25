@@ -5,6 +5,7 @@ GameRun::GameRun(bool keyboard, bool screen, bool limit_fps, int fps) {
 
     Game new_game(BOARD_HEIGHT, BOARD_WIDTH);
 
+    this->game = new_game;
     this->done = false;
     this->counter = 0;
     this->virtual_fps = fps;
