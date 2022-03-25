@@ -23,7 +23,7 @@ GameRun::GameRun(bool keyboard, bool screen, bool limit_fps, int fps) {
 
     if (screen)
         this->tela = Tela(game);
-        
+    printf("created game_run instance\n");        
 
 }
 
@@ -89,6 +89,8 @@ bool GameRun::run_frame() {
 
     real_fps = 1.0/((std::chrono::system_clock::now() - start).count());
 
+    if(done)
+        tela.cleanup_graphics();
     return !done;
 /*
     if (done) {

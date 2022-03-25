@@ -14,7 +14,7 @@ class Tela {
 
     public:
         Tela();
-        ~Tela();
         Tela(Game game);
         void update();
+        void cleanup_graphics();
 };
