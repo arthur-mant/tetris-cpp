@@ -13,7 +13,7 @@ const std::array<std::array<int, 3>, 8> colors = {{
 
 Tela::Tela(){}
 
-Tela::Tela(Game game) {
+Tela::Tela(Game *game) {
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         throw std::runtime_error("error initializing SDL\n");
@@ -34,6 +34,8 @@ Tela::Tela(Game game) {
 
 void Tela::update() {
 
+
+    SDL_SetRenderDrawColor(this->renderer, 210, 210, 210, 255);
     SDL_RenderClear(this->renderer);
 
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
@@ -52,8 +54,8 @@ void Tela::update() {
         rect.x = 50;
         for (int j=0; j<BOARD_WIDTH; j++) {
             SDL_RenderDrawRect(this->renderer, &rect);
-            if (game.get_field()[i][j] > -1) {
-                auto color = colors[game.get_field()[i][j]];
+            if (game->get_field()[i][j] > -1) {
+                auto color = colors[game->get_field()[i][j]];
 
                 auto aux_rect = rect;
                 aux_rect.x += 1;
@@ -68,6 +70,21 @@ void Tela::update() {
             SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
         }
         rect.y += 20;
+    }
+
+    for (auto aux: game->get_piece()->image()) {
+        int i = aux/4;
+        int j = aux%4;
+        rect = {50+(game->get_piece()->get_x()+j)*20+1,
+            50+(game->get_piece()->get_y()+i)*20+1,
+            20-2, 20-2};
+
+        if (game->get_piece()->get_y()+i >= 0) {
+            auto color = colors[game->get_piece()->get_type()];
+
+            SDL_SetRenderDrawColor(this->renderer, color[0], color[1], color[2], 255);
+            SDL_RenderFillRect(this->renderer, &rect);
+        }
     }
 
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);

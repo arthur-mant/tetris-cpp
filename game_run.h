@@ -10,11 +10,11 @@ class GameRun {
 
     private:
         bool done, pressing_down, uses_keyboard, uses_screen, limit_fps;
-        Game game;
+        Game *game;
         int counter, real_fps, virtual_fps;
-        KeyboardInput k_inp;
-        //QueueInput q_inp;
-        Tela tela;
+        KeyboardInput *k_inp;
+        //QueueInput *q_inp;
+        Tela *tela;
 
         int exec_command(char c);
 

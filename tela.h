@@ -10,11 +10,11 @@ class Tela {
         SDL_Surface *surface;
 //        TTF_Font *gFont;
         bool keyboard;
-        Game game;
+        Game *game;
 
     public:
         Tela();
-        Tela(Game game);
+        Tela(Game *game);
         void update();
         void cleanup_graphics();
 };

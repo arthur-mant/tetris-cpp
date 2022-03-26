@@ -1,8 +1,10 @@
 #include "game.h"
 
 void Game::new_piece() {
+
+    Piece aux_piece = Piece((board_width/2)-2, -2);
     piece = next_piece;
-    next_piece = Piece((board_width/2)-2, -2);
+    next_piece = &aux_piece;
     pieces++;
 }
 void Game::break_lines() {
@@ -27,25 +29,25 @@ bool Game::intersects() {
     bool intersection = false;
     int i, j;
 
-    for (int block: piece.image()) {
+    for (int block: piece->image()) {
         i = block/4;
         j = block%4;
 
-        if ((i+piece.get_y() >= 0) &&
-            ((i+piece.get_y() >= board_height) ||
-             (j+piece.get_x() >= board_width) ||
-             (j+piece.get_x() < 0) ||
-             (field[i+piece.get_y()][j+piece.get_x()] > -1)))
+        if ((i+piece->get_y() >= 0) &&
+            ((i+piece->get_y() >= board_height) ||
+             (j+piece->get_x() >= board_width) ||
+             (j+piece->get_x() < 0) ||
+             (field[i+piece->get_y()][j+piece->get_x()] > -1)))
                 intersection = true;
     return intersection;
     }
 }
 bool Game::freeze() {
     int i, j;
-    for (int block: piece.image()) {
+    for (int block: piece->image()) {
         i = block/4;
         j = block%4;
-        field[i+piece.get_y()][j+piece.get_x()] = piece.get_type();
+        field[i+piece->get_y()][j+piece->get_x()] = piece->get_type();
     }
     break_lines();
     new_piece();
@@ -61,8 +63,10 @@ Game::Game(int h, int w) {
     score = lines = pieces = 0;
     gameover = false;
     fps = -1;
-    piece = Piece((board_width/2)-2, -2);
-    next_piece = Piece((board_width/2)-2, -2);
+
+    piece = new Piece((board_width/2)-2, -2);
+    next_piece = new Piece((board_width/2)-2, -2);
+
     level = 1;
 
     this->field = (int **)malloc(h*sizeof(int *));
@@ -76,29 +80,33 @@ Game::Game(int h, int w) {
 
 void Game::hard_drop() {
     while (!intersects())
-       piece.move_down(1); 
-    piece.move_down(-1);
+       piece->move_down(1); 
+    piece->move_down(-1);
     freeze();
 }
 void Game::go_down() {
-    piece.move_down(1);
+    piece->move_down(1);
     if (intersects()) {
-        piece.move_down(-1);
+        piece->move_down(-1);
         freeze();
     }
 }
 void Game::go_side(int direction) {
-    piece.move_x(direction);
+    piece->move_x(direction);
     if (intersects())
-        piece.move_x(-direction);
+        piece->move_x(-direction);
 }
 void Game::rotate() {
-    piece.rotate(1);
+    piece->rotate(1);
     if (intersects())
-        piece.rotate(-1);
+        piece->rotate(-1);
 }
 int **Game::get_field() {
     return this->field;
+}
+
+Piece *Game::get_piece() {
+    return this->piece;
 }
 
 bool Game::get_gameover() {
