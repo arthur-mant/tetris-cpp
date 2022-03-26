@@ -26,6 +26,7 @@ class Game {
         void rotate();
         int **get_field();
         Piece *get_piece();
+        Piece *get_next_piece();
 
         bool get_gameover();
         int get_level();

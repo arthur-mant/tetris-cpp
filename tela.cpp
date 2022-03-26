@@ -51,6 +51,8 @@ void Tela::update() {
 
     rect = {50, 50, 20, 20}; //{x, y, w, h}
 
+    //desenhando tabuleiro
+
     for (int i=0; i<BOARD_HEIGHT; i++) {
         rect.x = 50;
         for (int j=0; j<BOARD_WIDTH; j++) {
@@ -73,6 +75,8 @@ void Tela::update() {
         rect.y += 20;
     }
 
+    //desenhando peça
+
     for (auto aux: game->get_piece()->image()) {
         int i = aux/4;
         int j = aux%4;
@@ -88,7 +92,34 @@ void Tela::update() {
         }
     }
 
-    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, 255);
+
+    //desenhando grade próx peça
+
+    for (int i=0; i<4; i++)
+        for (int j=0; j<4; j++) {
+            rect = {50+200+3*20+20*j, 50+50+20*i, 20, 20};
+            SDL_RenderDrawRect(this->renderer, &rect);
+        }
+            
+
+    //desenhando próxima peça
+
+    for (auto aux: game->get_next_piece()->image()) {
+        int i = aux/4;
+        int j = aux%4;
+        rect = {50+200+(3+j)*20+1,
+            50+50+(-1+i)*20+1,
+            20-2, 20-2};
+
+        if (game->get_next_piece()->get_y()+i >= 0) {
+            auto color = colors[game->get_next_piece()->get_type()];
+
+            SDL_SetRenderDrawColor(this->renderer, color[0], color[1], color[2], 255);
+            SDL_RenderFillRect(this->renderer, &rect);
+        }
+    }
+    
 
     SDL_RenderPresent(this->renderer);
 

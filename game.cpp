@@ -116,6 +116,9 @@ int **Game::get_field() {
 Piece *Game::get_piece() {
     return this->piece;
 }
+Piece *Game::get_next_piece() {
+    return this->next_piece;
+}
 
 bool Game::get_gameover() {
     return gameover;
