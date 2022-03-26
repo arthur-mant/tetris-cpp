@@ -26,12 +26,15 @@ void Game::break_lines() {
     }
 }
 bool Game::intersects() {
+    std::cout << "in intersect\n";
     bool intersection = false;
     int i, j;
 
-    for (int block: piece->image()) {
-        i = block/4;
-        j = block%4;
+    for (int k=0; k<piece->image().size(); k++) {
+        i = piece->image()[k]/4;
+        j = piece->image()[k]%4;
+
+        std::cout << "(" << piece->get_x()+j << ", " << piece->get_y()+i << ")\n";
 
         if ((i+piece->get_y() >= 0) &&
             ((i+piece->get_y() >= board_height) ||
@@ -39,8 +42,9 @@ bool Game::intersects() {
              (j+piece->get_x() < 0) ||
              (field[i+piece->get_y()][j+piece->get_x()] > -1)))
                 intersection = true;
-    return intersection;
+
     }
+    return intersection;
 }
 bool Game::freeze() {
     int i, j;
