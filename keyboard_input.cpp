@@ -6,10 +6,12 @@ char KeyboardInput::get_command() {
 
     SDL_PollEvent(&event);
 
-//    std::cout << "event: " << event.type << " , quit: " << SDL_QUIT << "\n";
+    //std::cout << "event: " << event.type << " , left: " << SDLK_LEFT << "\n";
 
     if (event.type == SDL_KEYDOWN) {
-        switch (event.type) {
+        //std::cout << "key down! " << event.key.keysym.sym << "\n";
+        //std::cout << "left: " << SDLK_LEFT << " right: " << SDLK_RIGHT << "\n";
+        switch (event.key.keysym.sym) {
             case SDLK_LEFT:
                 return 'L';
             case SDLK_RIGHT:

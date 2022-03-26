@@ -28,10 +28,11 @@ void Piece::rotate(int i) {
     rotation = (rotation+i) % (rot_num);
 }
 int Piece::move_x(int n) {
-    if ((n != 1) && (n != -1))
+    if ((n != 1) && (n != -1)) {
         printf("ERROR: ILLEGAL X AXIS PIECE MOVE\n");
         return -1;
-    x += n;
+    }
+    this->x += n;
     return x;
 }
 int Piece::move_down(int n) {
