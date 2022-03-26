@@ -32,8 +32,10 @@ int GameRun::exec_command(char c) {
 
 //    std::cout << "comando: " << c << "\n";
 
-    if (c == 'E')
+    if (c == 'E') {
         done = true;
+        return 0;
+    }
 
     if (this->game->get_gameover())
         return 1;
@@ -57,7 +59,7 @@ int GameRun::exec_command(char c) {
         case '0':
             break;
         default:
-            fprintf(stderr, "\nERROR: unrecognized command%c\n", c);
+            fprintf(stderr, "\nERROR: unrecognized command %c\n", c);
             
     }
     return 0;

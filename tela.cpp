@@ -34,6 +34,7 @@ Tela::Tela(Game *game) {
 
 void Tela::update() {
 
+    SDL_SetWindowTitle(this->win, "Tetris");
 
     SDL_SetRenderDrawColor(this->renderer, 210, 210, 210, 255);
     SDL_RenderClear(this->renderer);
