@@ -32,6 +32,12 @@ int GameRun::exec_command(char c) {
 
 //    std::cout << "comando: " << c << "\n";
 
+    if (c == 'E')
+        done = true;
+
+    if (this->game->get_gameover())
+        return 1;
+
     switch(c) {
         case 'U':
             game->rotate();
@@ -47,9 +53,6 @@ int GameRun::exec_command(char c) {
             break;
         case 'H':
             game->hard_drop();
-            break;
-        case 'E':  //fechar janela
-            done = true;
             break;
         case '0':
             break;

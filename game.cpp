@@ -56,8 +56,10 @@ bool Game::freeze() {
     }
     break_lines();
     new_piece();
-    if (intersects())
+    if (intersects()) {
+        //std::cout << "GAMEOVER\n";
         gameover = true;
+    }
 }
 
 Game::Game(){}
