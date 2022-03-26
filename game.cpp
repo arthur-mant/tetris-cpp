@@ -17,10 +17,12 @@ void Game::break_lines() {
         }
         if (holes == 0) {
             lines++;
-            for (int k=i; k<0; k--) {
+            for (int k=i; k>0; k--) {
                 for (int l=0; l<board_width; l++)
                     field[k][l] = field[k-1][l];
             }
+            for (int l=0; l<board_width; l++)
+                field[0][l] = -1;
         }
     }
 }
