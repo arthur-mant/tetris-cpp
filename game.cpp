@@ -2,9 +2,8 @@
 
 void Game::new_piece() {
 
-    Piece aux_piece = Piece((board_width/2)-2, -2);
     piece = next_piece;
-    next_piece = &aux_piece;
+    next_piece = new Piece((board_width/2)-2, -2);
     pieces++;
 }
 void Game::break_lines() {
