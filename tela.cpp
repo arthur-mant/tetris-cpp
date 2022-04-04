@@ -19,6 +19,9 @@ Tela::Tela(Game *game) {
         throw std::runtime_error("error initializing SDL\n");
     }
 
+    if (TTF_Init() < 0)
+        throw std::runtime_error("error initializing SDL_ttf\n");
+
     SDL_CreateWindowAndRenderer(500, 500, SDL_WINDOW_RESIZABLE, &this->win, &this->renderer);
     SDL_RenderSetLogicalSize(this->renderer, 500, 500);
 
@@ -26,8 +29,13 @@ Tela::Tela(Game *game) {
         throw std::runtime_error("Failed to create window\n");
     }
 
-
     this->game = game;
+
+    this->text_font = TTF_OpenFont("assets/Monospace.ttf", 100);
+
+    if (!this->text_font)
+        printf("could not load font\n");
+
     printf("created screen\n");
 
 }
@@ -120,6 +128,14 @@ void Tela::update() {
         }
     }
     
+    SDL_Color black = {0, 0, 0};
+
+    SDL_Surface* next_piece_text =  TTF_RenderText_Solid(this->text_font, "Next piece:", black);
+    SDL_Texture* message = SDL_CreateTextureFromSurface(this->renderer, next_piece_text);
+
+    rect = {50+200+20, 50+10, 200-20*2, 50-10*2};
+    SDL_RenderCopy(this->renderer, message, NULL, &rect);
+    SDL_DestroyTexture(message);
 
     SDL_RenderPresent(this->renderer);
 

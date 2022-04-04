@@ -8,7 +8,7 @@ class Tela {
         SDL_Renderer *renderer;
         SDL_Texture *display;
         SDL_Surface *surface;
-//        TTF_Font *gFont;
+        TTF_Font *text_font;
         bool keyboard;
         Game *game;
 

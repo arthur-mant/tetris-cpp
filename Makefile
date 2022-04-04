@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-O2
-LINKER=-lSDL2
+LINKER=-lSDL2 -lSDL2_ttf
 
 SRCS=$(wildcard *.cpp)
 OBJS=$(SRCS:.cpp=.o)
