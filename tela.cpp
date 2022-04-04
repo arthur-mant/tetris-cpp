@@ -136,6 +136,7 @@ void Tela::update() {
     rect = {50+200+20, 50+10, 200-20*2, 50-10*2};
     SDL_RenderCopy(this->renderer, message, NULL, &rect);
     SDL_DestroyTexture(message);
+    SDL_FreeSurface(next_piece_text);
 
     std::string s_aux = "score: "+std::to_string(this->game->get_score());
 
@@ -145,6 +146,7 @@ void Tela::update() {
     rect = {50+200+20, 50+130+10, 200-20*2, 50-10*2};
     SDL_RenderCopy(this->renderer, message, NULL, &rect);
     SDL_DestroyTexture(message);
+    SDL_FreeSurface(next_piece_text);
 
     SDL_RenderPresent(this->renderer);
 
