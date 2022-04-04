@@ -30,5 +30,6 @@ class Game {
 
         bool get_gameover();
         int get_level();
+        int get_score();
 };
 #endif

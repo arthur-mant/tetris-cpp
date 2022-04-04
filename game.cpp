@@ -25,6 +25,24 @@ void Game::break_lines() {
                 field[0][l] = -1;
         }
     }
+    switch(lines) {
+        case 1:
+            this->score += 40;
+            break;
+        case 2:
+            this->score += 100;
+            break;
+        case 3:
+            this->score += 300;
+            break;
+        case 4:
+            this->score += 1200;
+            break;
+        case 0:
+            break;
+        default:
+            fprintf(stderr, "ERROR: number of lines(%d) broke???\n", lines);
+    }
 }
 bool Game::intersects() {
 //    std::cout << "in intersect\n";
@@ -86,8 +104,9 @@ Game::Game(int h, int w) {
 }
 
 void Game::hard_drop() {
-    while (!intersects())
-       piece->move_down(1); 
+    while (!intersects()) {
+        piece->move_down(1);
+    }
     piece->move_down(-1);
     freeze();
 }
@@ -125,4 +144,7 @@ bool Game::get_gameover() {
 }
 int Game::get_level() {
     return level;
+}
+int Game::get_score() {
+    return score;
 }

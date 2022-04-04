@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <array>
+#include <string>
 #include <stdexcept>
 #include <iostream>
 #include <unistd.h>

@@ -31,7 +31,7 @@ Tela::Tela(Game *game) {
 
     this->game = game;
 
-    this->text_font = TTF_OpenFont("assets/Monospace.ttf", 100);
+    this->text_font = TTF_OpenFont("assets/Monospace.ttf", 20);
 
     if (!this->text_font)
         printf("could not load font\n");
@@ -130,10 +130,19 @@ void Tela::update() {
     
     SDL_Color black = {0, 0, 0};
 
-    SDL_Surface* next_piece_text =  TTF_RenderText_Solid(this->text_font, "Next piece:", black);
+    SDL_Surface* next_piece_text =  TTF_RenderText_Solid(this->text_font, "next piece:", black);
     SDL_Texture* message = SDL_CreateTextureFromSurface(this->renderer, next_piece_text);
 
     rect = {50+200+20, 50+10, 200-20*2, 50-10*2};
+    SDL_RenderCopy(this->renderer, message, NULL, &rect);
+    SDL_DestroyTexture(message);
+
+    std::string s_aux = "score: "+std::to_string(this->game->get_score());
+
+    next_piece_text =  TTF_RenderText_Solid(this->text_font, s_aux.c_str(), black);
+    message = SDL_CreateTextureFromSurface(this->renderer, next_piece_text);
+
+    rect = {50+200+20, 50+130+10, 200-20*2, 50-10*2};
     SDL_RenderCopy(this->renderer, message, NULL, &rect);
     SDL_DestroyTexture(message);
 
