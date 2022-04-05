@@ -12,11 +12,12 @@ class Queue {
         int head, tail;
 
     public:
-        Queue():
+        Queue();
         bool empty();
         bool full();
         int get_size();
         void push(char c);
         char pop();
 
+};
 #endif
