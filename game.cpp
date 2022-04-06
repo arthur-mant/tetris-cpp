@@ -25,6 +25,7 @@ void Game::break_lines() {
                 field[0][l] = -1;
         }
     }
+    this->line_count += lines;
     switch(lines) {
         case 1:
             this->score += 40;
@@ -85,7 +86,7 @@ Game::Game(){}
 Game::Game(int h, int w) {
     board_height = h;
     board_width = w;
-    score = lines = pieces = 0;
+    this->score = this->line_count = this->pieces = 0;
     gameover = false;
     fps = -1;
 
@@ -147,4 +148,7 @@ int Game::get_level() {
 }
 int Game::get_score() {
     return score;
+}
+int Game::get_line_count() {
+    return this->line_count;
 }

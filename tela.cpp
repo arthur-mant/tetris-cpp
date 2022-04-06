@@ -138,6 +138,7 @@ void Tela::update() {
     SDL_DestroyTexture(message);
     SDL_FreeSurface(next_piece_text);
 
+    //score text box
     std::string s_aux = "score: "+std::to_string(this->game->get_score());
 
     next_piece_text =  TTF_RenderText_Solid(this->text_font, s_aux.c_str(), black);
@@ -148,6 +149,16 @@ void Tela::update() {
     SDL_DestroyTexture(message);
     SDL_FreeSurface(next_piece_text);
 
+    //lines box
+    s_aux = "lines: "+std::to_string(this->game->get_line_count());
+
+    next_piece_text =  TTF_RenderText_Solid(this->text_font, s_aux.c_str(), black);
+    message = SDL_CreateTextureFromSurface(this->renderer, next_piece_text);
+
+    rect = {50+200+20, 50+130+50+10, 200-20*2, 50-10*2};
+    SDL_RenderCopy(this->renderer, message, NULL, &rect);
+    SDL_DestroyTexture(message);
+    SDL_FreeSurface(next_piece_text);
     SDL_RenderPresent(this->renderer);
 
 }
