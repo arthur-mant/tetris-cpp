@@ -16,7 +16,7 @@ class Game {
         void new_piece();
         void break_lines();
         bool intersects();
-        bool freeze();
+        void freeze();
     public:
         Game();
         Game(int h, int w);

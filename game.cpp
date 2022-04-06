@@ -65,7 +65,7 @@ bool Game::intersects() {
     }
     return intersection;
 }
-bool Game::freeze() {
+void Game::freeze() {
     int i, j;
     for (int block: piece->image()) {
         i = block/4;
@@ -76,7 +76,7 @@ bool Game::freeze() {
     new_piece();
     if (intersects()) {
         //std::cout << "GAMEOVER\n";
-        gameover = true;
+        this->gameover = true;
     }
 }
 
