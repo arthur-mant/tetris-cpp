@@ -20,7 +20,9 @@ class Piece {
         int get_x();
         int get_y();
         int get_rotation();
+        std::array<std::array<int, 4>, 4> Piece::get_rot_array();
         int get_type();
+        int get_num_rot();
 };
 
 #endif

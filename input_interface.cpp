@@ -47,3 +47,7 @@ void hard_drop() {
 char get_command() {
     return this->q->pop();
 }
+
+void send_game(Game game) {
+
+}

@@ -50,6 +50,12 @@ int Piece::get_y() {
 int Piece::get_rotation() {
     return rotation;
 }
+std::array<std::array<int, 4>, 4> Piece::get_rot_array() {
+    return rot_array;
+}
 int Piece::get_type() {
     return type;
+}
+int get_num_rot() {
+    return num_rot;
 }

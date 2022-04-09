@@ -148,3 +148,9 @@ int Game::get_level() {
 int Game::get_score() {
     return score;
 }
+int get_board_width() {
+    return this->board_width;
+}
+int get_board_height() {
+    return this->board_height;
+}

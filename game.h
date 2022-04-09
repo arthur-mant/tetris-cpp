@@ -31,5 +31,7 @@ class Game {
         bool get_gameover();
         int get_level();
         int get_score();
+        int get_board_width();
+        int get_board_height();
 };
 #endif
